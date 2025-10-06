@@ -1,0 +1,34 @@
+Implementar um jogo em JS com os seguintes requisitos técnicos:
+• Animação com figuras. Exemplo: um tabuleiro de dominós com peças sendo
+encaixadas, uma mesa de baralho com cartas entrando e saindo, uma pista de
+corrida com dois carrinhos se movendo.
+• O jogo deve ter pelo menos dois jogadores seres humanos.
+• Tabela (TABLE/TH/TR/TD) dinâmica, com linhas sendo inseridas e removidas.
+• Lista (OL/UL/LI) dinâmica, com linhas sendo inseridas e removidas.
+• Algum elemento de tela deve ter seus estilos mudados dinamicamente via JS em
+função de algum “movimento” ou “mudança de estado” do jogo. Exemplo: quando
+a vez de um jogador chegar, o estilo de um controle a ele pertinente deve mudar.
+• O indispensável em um jogo: código JS programando resposta a eventos.
+• Placar do jogo, mostrando a pontuação atualizada dos jogadores e seus
+respectivos nomes.
+• Duas páginas:
+o Uma inicial, com as configurações mínimas do jogo: nomes dos jogadores
+e um botão de iniciar jogo (que leva à página do jogo).
+o A página do jogo em si. Esta, ao ser carregada, deve, de alguma forma,
+
+receber os nomes dos jogadores como parâmetros, pois precisará exibi-
+los no placar e eventualmente em outros locais do jogo.
+
+• As páginas devem ter algum layout CSS.
+• As páginas devem ser planejadas e estilizadas em um padrão minimamente
+aceitável para um jogo. Páginas “cruas” e desorganizadas serão penalizadas.
+• O jogo deve atualizar dinamicamente propriedades de objetos DOM.
+• Devem ser utilizadas classes JS (abstrações) para representar os elementos
+lógicos básicos do jogo. Exemplo: se o jogo for um dominó, devem existir classes
+para representar peças, o jogo em si, etc.
+• É proibido usar bibliotecas CSS, JS e HMTL de terceiros.
+• Separação COMPLETA de HTML, CSS e JS. Não deve aparecer código JS nem CSS
+nos HTLM ́s.
+• Não implementar nada online nesta primeira unidade, pois o jogo deve ser jogado
+por mais de um jogador em uma única tela. MAS...o jogo a ser implementado deve
+ser pensado para ser jogado online em uma versão futura.

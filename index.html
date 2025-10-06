@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO Game - Configuração</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>UNO</h1>
+            <p>Configure seu jogo</p>
+        </header>
+        
+        <main class="setup-container">
+            <form id="gameSetupForm">
+                <div class="player-setup">
+                    <label for="player1Name">Nome do Jogador 1:</label>
+                    <input type="text" id="player1Name" name="player1Name" required>
+                </div>
+                
+                <div class="player-setup">
+                    <label for="player2Name">Nome do Jogador 2:</label>
+                    <input type="text" id="player2Name" name="player2Name" required>
+                </div>
+                
+                <button type="submit" class="start-game-btn">Iniciar Jogo</button>
+            </form>
+        </main>
+    </div>
+    
+    <script src="setup.js"></script>
+</body>
+</html>

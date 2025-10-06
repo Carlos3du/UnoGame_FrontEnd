@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>UNO</h1>
+            <div class="scoreboard">
+                <div class="player-score" id="player1Score">
+                    <span class="player-name" id="player1Name">Jogador 1</span>
+                    <span class="score">7 cartas</span>
+                </div>
+                <div class="player-score" id="player2Score">
+                    <span class="player-name" id="player2Name">Jogador 2</span>
+                    <span class="score">7 cartas</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-board">
+            <div class="deck-area">
+                <div class="draw-pile" id="drawPile">
+                    <div class="card card-back"></div>
+                </div>
+                <div class="discard-pile" id="discardPile">
+                    <div class="card" id="currentCard"></div>
+                </div>
+            </div>
+
+            <div class="game-info">
+                <div class="current-player" id="currentPlayerDisplay">
+                    Vez de: <span id="currentPlayerName">Jogador 1</span>
+                </div>
+                <div class="game-actions">
+                    <button id="drawCardBtn" class="action-btn">Comprar Carta</button>
+                    <button id="unoBtn" class="action-btn uno-btn">UNO!</button>
+                </div>
+            </div>
+
+            <div class="hands-area">
+                <div class="player-hand" id="player1Hand">
+                    <h3 id="player1HandTitle">Cartas do Jogador 1:</h3>
+                    <div class="cards" id="player1Cards"></div>
+                </div>
+                <div class="player-hand" id="player2Hand">
+                    <h3 id="player2HandTitle">Cartas do Jogador 2:</h3>
+                    <div class="cards" id="player2Cards"></div>
+                </div>
+            </div>
+        </main>
+
+        <div class="game-log">
+            <h3>Log do Jogo</h3>
+            <ul id="gameLogList"></ul>
+        </div>
+
+        <div class="game-history">
+            <h3>Histórico de Partidas</h3>
+            <table id="gameHistoryTable">
+                <thead>
+                    <tr>
+                        <th>Partida</th>
+                        <th>Vencedor</th>
+                        <th>Cartas Restantes</th>
+                    </tr>
+                </thead>
+                <tbody id="gameHistoryBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="colorPickerModal" class="modal">
+        <div class="modal-content">
+            <h3>Escolha uma cor:</h3>
+            <div class="color-options">
+                <button class="color-btn red" data-color="red"></button>
+                <button class="color-btn yellow" data-color="yellow"></button>
+                <button class="color-btn green" data-color="green"></button>
+                <button class="color-btn blue" data-color="blue"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+            <h2 id="winnerMessage">Jogo Terminou!</h2>
+            <button id="newGameBtn" class="action-btn">Nova Partida</button>
+            <button id="backToSetupBtn" class="action-btn">Voltar à Configuração</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+header h1 {
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+header p {
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.setup-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    min-width: 400px;
+}
+
+.player-setup {
+    margin-bottom: 25px;
+}
+
+.player-setup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.player-setup input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.player-setup input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.start-game-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.start-game-btn:hover {
+    transform: translateY(-2px);
+}
+
+.game-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.game-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.game-container header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.scoreboard {
+    display: flex;
+    gap: 30px;
+}
+
+.player-score {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.player-score.active {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+    border: 2px solid #fff;
+}
+
+.player-name {
+    display: block;
+    font-weight: bold;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.score {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.deck-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    grid-column: 1 / -1;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.draw-pile, .discard-pile {
+    position: relative;
+}
+
+.card {
+    width: 80px;
+    height: 120px;
+    border-radius: 10px;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-back {
+    background: linear-gradient(45deg, #333, #555);
+    color: #fff;
+}
+
+.card-back::after {
+    content: "UNO";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.card.red { background-color: #e74c3c; color: white; }
+.card.yellow { background-color: #f1c40f; color: black; }
+.card.green { background-color: #27ae60; color: white; }
+.card.blue { background-color: #3498db; color: white; }
+.card.wild { background: linear-gradient(45deg, #e74c3c, #f1c40f, #27ae60, #3498db); color: white; }
+
+.game-info {
+    grid-column: 1 / -1;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.current-player {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.game-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.action-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.uno-btn {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+}
+
+.hands-area {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.player-hand {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.player-hand h3 {
+    color: #fff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    min-height: 140px;
+}
+
+.cards .card {
+    width: 60px;
+    height: 90px;
+    font-size: 12px;
+}
+
+.game-log {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.game-log h3 {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.game-log ul {
+    list-style: none;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.game-log li {
+    color: #e0e0e0;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-log li:last-child {
+    border-bottom: none;
+}
+
+.game-history {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.game-history h3 {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.game-history table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.game-history th,
+.game-history td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+}
+
+.game-history th {
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: bold;
+    color: #fff;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.color-options {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.color-btn {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+}
+
+.color-btn.red { background-color: #e74c3c; }
+.color-btn.yellow { background-color: #f1c40f; }
+.color-btn.green { background-color: #27ae60; }
+.color-btn.blue { background-color: #3498db; }
+
+.card.playable {
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.card.played {
+    opacity: 0.5;
+    transform: scale(0.9);
+}
+
+@keyframes cardPlay {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.1); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+.card.animating {
+    animation: cardPlay 0.5s ease;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.current-player.highlight {
+    animation: bounce 1s ease;
+}
+
+.waiting-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90px;
+    color: #e0e0e0;
+    font-size: 16px;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 2px dashed #fff;
+}
