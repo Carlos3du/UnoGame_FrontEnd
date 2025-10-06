@@ -11,7 +11,7 @@ class Card {
     }
     
     isSpecial() {
-        return ['skip', 'reverse', 'draw2', 'wild', 'wilddraw4'].includes(this.value);
+        return ['skip', 'reverse', '+2', 'wild', 'wilddraw4'].includes(this.value);
     }
 }
 
@@ -24,7 +24,7 @@ class Deck {
     
     initialize() {
         const colors = ['red', 'yellow', 'green', 'blue'];
-        const values = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'skip', 'reverse', 'draw2'];
+        const values = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'skip', 'reverse', '+2'];
         
         for (let color of colors) {
             for (let value of values) {
@@ -151,6 +151,7 @@ class UnoGame {
         const unoBtn = document.getElementById('unoBtn');
         drawBtn.disabled = true;
         unoBtn.disabled = true;
+        drawBtn.textContent = 'Comprar Carta';
     }
     
     playCard(playerIndex, cardIndex) {
@@ -201,7 +202,7 @@ class UnoGame {
                 this.direction *= -1;
                 this.addToLog('Direção do jogo invertida!');
                 break;
-            case 'draw2':
+            case '+2':
                 const nextPlayer = this.players[(this.currentPlayerIndex + 1) % 2];
                 nextPlayer.addCard(this.deck.draw());
                 nextPlayer.addCard(this.deck.draw());
@@ -223,6 +224,13 @@ class UnoGame {
         if (playerIndex !== this.currentPlayerIndex || this.pendingColorChoice || this.isTransitioning) return;
         
         const player = this.players[playerIndex];
+        const topCard = this.getTopCard();
+        
+        if (player.canPlay(topCard)) {
+            this.addToLog(`${player.name} não pode comprar carta - tem cartas jogáveis!`);
+            return;
+        }
+        
         const drawnCard = this.deck.draw();
         player.addCard(drawnCard);
         
@@ -347,8 +355,20 @@ class UnoGame {
         const unoBtn = document.getElementById('unoBtn');
         
         if (!this.isTransitioning) {
-            drawBtn.disabled = false;
+            const currentPlayer = this.getCurrentPlayer();
+            const topCard = this.getTopCard();
+            const canPlay = currentPlayer.canPlay(topCard);
+            
+            drawBtn.disabled = canPlay;
             unoBtn.disabled = false;
+            
+            if (canPlay) {
+                drawBtn.textContent = 'Você tem cartas jogáveis!';
+                drawBtn.style.background = '#ccc';
+            } else {
+                drawBtn.textContent = 'Comprar Carta';
+                drawBtn.style.background = '#ffe100';
+            }
         }
         
         currentPlayerDisplay.classList.add('highlight');

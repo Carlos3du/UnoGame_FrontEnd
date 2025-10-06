@@ -239,7 +239,7 @@ header p {
 }
 
 .action-btn:disabled {
-    background: #333333;
+    background: #242424;
     cursor: not-allowed;
     color: white;
     transform: none;
